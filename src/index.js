@@ -22,24 +22,36 @@ module.exports = function getZerosCount(number, base) {
   var y;
   var b = base;
   var n =number;
-  console.log(number, "Number");
+  //console.log(number, "Number");
   console.log(base, "base");
-  var i = 0;
   var bs = [];
-  for (i; i<primeN.length; i++) {
-  if (b%primeN[i] == 0) {
+
+  for (var i = -1; i<primeN.length; ++i) {
+    if(b==1){break}
+
+  if (b%primeN[i] == 0&& b>1 ) {
   console.log("pushing primeN[i]", primeN[i])
   bs.push(primeN[i]);
   console.log(bs, "bs")
   b = b/primeN[i];
-  i=0;
-  console.log(b,"b");
-  console.log(i, "i");
+  i= -1;
+  
+  console.log(b,"rem");
+  
   }
   }
   bs = bs.sort(function(a,b) {return b-a});
   console.log(bs, "bs");
   y = bs[0];
+  var count = 1;
+  for(var i = 0; i < bs.length ; i++) {
+  if(bs[i]==bs[i+1]) {
+    count++
+  }
+  else {
+    break
+  }
+  }
   
   
   
@@ -50,9 +62,11 @@ module.exports = function getZerosCount(number, base) {
   x++;
   }
   console.log(zeros)
-  if( bs[0]==bs[1]) {
-  zeros = zeros/2
+
+  if( count>1) {
+  zeros = parseInt(zeros/count)
   }
+  console.log(zeros)
   return zeros;
   // your implementation
   }
